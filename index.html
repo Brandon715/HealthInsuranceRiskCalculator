@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Health Insurance Risk Calculator</title>
+</head>
+
+<body>
+    <h1>Health Insurance Risk Calculator</h1>
+    <p>Instructions: Drop down categories will be presented. Click the proper value for the client and when completed, click the calculate button.</p>
+
+<label>1) What is the Clients age?</label><br>
+<select id='q1'>
+  <option>*Select Answer*</option>
+  <option value='0'>Less than 31</option>
+  <option value='10'>31 to 45</option>
+  <option value='20'>46 to 60</option>
+  <option value='30'>Greater than 60</option>
+</select>
+
+<br>
+<br>
+
+<label>2) What is the Clients BMI?</label><br>
+<select id='q2'>
+  <option>*Select Answer*</option>
+  <option value='0'>Normal (18.5-24.9)</option>
+  <option value='30'>Overweight (25.0-29.9)</option>
+  <option value='75'>Obese (30.0-34.9)</option>
+</select>
+
+<br>
+<br>
+
+<img src='BloodP-Chart.png' alt='Blood Pressure Chart' style='width:450px;height:300px;'>
+
+<br>
+<br>
+
+<label>3) What is the Clients Blood Pressure? (Refer to chart)</label><br>
+<select id='q3'>
+  <option>*Select Answer*</option>
+  <option value='0'>Normal</option>
+  <option value='15'>Elevated</option>
+  <option value='30'>Stage 1</option>
+  <option value='75'>Stage 2</option>
+  <option value='100'>Crisis</option>
+</select>
+
+<br>
+<br>
+
+<label>4) Does the Client have a family history of Diabetes?</label><br>
+<select id='q4'>
+  <option>*Select Answer*</option>
+  <option value='10'>YES</option>
+  <option value='0'>NO</option>
+</select>
+
+<br>
+<br>
+
+<label>5) Does the Client have a family history of Cancer?</label><br>
+<select id='q5'>
+  <option>*Select Answer*</option>
+  <option value='10'>YES</option>
+  <option value='0'>NO</option>
+</select>
+
+<br>
+<br>
+
+<label>6) Does the Client have a family history of Alzheimer's?</label><br>
+<select id='q6'>
+  <option>*Select Answer*</option>
+  <option value='10'>YES</option>
+  <option value='0'>NO</option>
+</select>
+
+<br><br><br>
+<button onclick='calculateRisk()'>Calculate Risk</button>
+<p id='Risk'></p>
+
+<script>
+console.log('Starting Calculations...')
+
+function calculateRisk() {
+    console.log('Calculate Risk')
+
+    let question1Response = document.getElementById('q1').selectedOptions[0].value;
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+    let question6Response = document.getElementById('q6').selectedOptions[0].value;
+
+
+    let question1Risk = (question1Response);
+    let question2Risk = (question2Response);
+    let question3Risk = (question3Response);
+    let question4Risk = (question4Response);
+    let question5Risk = (question5Response);
+    let question6Risk = (question6Response);
+
+    console.log(question1Risk);
+    console.log(question2Risk);
+    console.log(question3Risk);
+    console.log(question4Risk);
+    console.log(question5Risk);
+    console.log(question6Risk);
+
+    //Total Risk calculations
+    let totalRisk = parseInt(question1Risk) + parseInt(question2Risk) + parseInt(question3Risk) + parseInt(question4Risk) + parseInt(question5Risk) + parseInt(question6Risk);
+    console.log('Total Risk='+ totalRisk);
+
+    let userResponse = ('');
+    if (totalRisk > 75){userResponse += ('Uninsurable')}
+    else if (totalRisk < 21){userResponse += ('Low Risk')}
+    else if (totalRisk < 51){userResponse += ('Moderate Risk')}
+    else if (totalRisk < 76){userResponse += ('High Risk')}
+
+
+
+    document.getElementById('Risk'). innerHTML = 'The Total Risk is: ' + userResponse;
+}
+</script>
+</body>
+</html>
